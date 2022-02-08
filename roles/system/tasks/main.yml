@@ -1,0 +1,43 @@
+- name: Creating Base Filesystem
+  file:
+    path: {{ item }}
+    state: directory
+    recurse: yes
+    with_items: 
+      - "{{ home }}/Desktop"
+      - "{{ home }}/Documents"
+      - "{{ home }}/Downloads"
+      - "{{ home }}/Music"
+      - "{{ home }}/Pictures"
+      - "{{ home }}/Programs"
+      - "{{ home }}/Videos"
+      - "{{ home }}/.config"
+      - "{{ home }}/.bin"
+      - "{{ home }}/Documents/uni"
+      - "{{ home }}/Documents/work"
+      - "{{ home }}/Documents/projects"
+      - "{{ home }}/Documents/projects/ai"
+      - "{{ home }}/Documents/projects/dsa"
+      - "{{ home }}/Documents/projects/embedded"
+      - "{{ home }}/Documents/projects/hw"
+      - "{{ home }}/Documents/projects/langs"
+      - "{{ home }}/Documents/projects/langs/cpp"
+      - "{{ home }}/Documents/projects/langs/rust"
+      - "{{ home }}/Documents/projects/langs/lua"
+      - "{{ home }}/Documents/projects/personal"
+      - "{{ home }}/Documents/projects/templates"
+      - "{{ home }}/Documents/projects/tutorials"
+
+- name: Checking for ssh key
+  stat:
+    file: ~/.ssh/id_ed25519.pub
+  register: sshkey
+
+- name: Pulling Down Git Projects
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}/{{ item.name }}"
+    update: no
+  with_items:
+    "{{ github-projects }}"
+  when: sshkey.exists

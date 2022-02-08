@@ -1,0 +1,44 @@
+- name: Upgrade Packages
+  community.general.pacman:
+    upgrade: yes
+  become: yes
+  become_user: root
+  become_method: sudo
+  when: arch_upgrade == "yes"
+
+- name: Install Packages
+  community.general.pacman:
+    state: present
+  become: yes
+  become_user: root
+  become_method: sudo
+  loop: "{{ arch_packages }}"
+
+- name: Install AUR Helper
+  kewlfft.aur.aur:
+    use: makepkg
+    state: present
+    name: paru
+
+- name: Install AUR Packages
+  kewlfft.aur.aur:
+    use: paru
+    state: present
+    name:
+      - brave-bin
+      - zoom
+      - spotify
+      - clang-format-static-bin
+      - pandoc-bin
+      - snapd
+
+- name: Configure SystemD Packages
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    enabled: yes
+    masked: no
+    force: no
+  become: yes
+  become_user: root
+  become_method: sudo
+  with_items: "{{ arch_services }}"

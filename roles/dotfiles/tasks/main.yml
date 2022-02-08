@@ -1,0 +1,4 @@
+- name: Stow dotfiles
+  ansible.builtin.shell:
+    cmd: ./stow.sh {{ stow_mode }} {{ stow_option }}
+    chdir: bin/
