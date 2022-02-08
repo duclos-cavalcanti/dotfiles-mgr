@@ -7,9 +7,9 @@
   <img alt="Ansible" src="https://img.shields.io/badge/-Ansible-EE0000?style=flat-square&logo=Ansible&logoColor=white" />
 </p>
 
-- All my dotfiles regarding the software and machine configs used by me. Feel free to look around. Fonts, images and even a few script snippets may not be mine. 
-
-- Dotfiles are managed across the system with [stow](https://www.gnu.org/software/stow/) and installation is greatly automated with [Name](https://www.ansible.com/).
+- Dotfiles manager *repo* that uses [stow](https://www.gnu.org/software/stow/) and [ansible](https://www.ansible.com/) to automate
+and enable a quick installation of my system configurations on an `Arch` or `Debian` based
+system.
 
 ## Installation
 The following script checks if `Ansible` is installed on the current system, in case it is
