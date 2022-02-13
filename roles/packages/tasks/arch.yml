@@ -28,9 +28,7 @@
       - brave-bin
       - zoom
       - spotify
-      - clang-format-static-bin
-      - pandoc-bin
-      - snapd
+      - i3-lock-color
 
 - name: Configure SystemD Packages
   ansible.builtin.systemd:

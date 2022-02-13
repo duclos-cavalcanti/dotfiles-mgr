@@ -66,19 +66,17 @@ arch_packages:
   - xclip
 
 # Core/Dev packages
-  - i3lock
+# - i3lock
   - i3-wm
   - i3status
   - picom
   - dunst
   - unclutter
-  - parcellite
   - alacritty
   - vim
   - curl
   - python
   - python-pip
-  - nano
   - tmux
   - ttf-dejavu
   - imagemagick
@@ -99,7 +97,6 @@ arch_packages:
   - arm-none-eabi-gcc
   - arm-none-eabi-gdb
   - arm-none-eabi-newlib
-  - ghdl-gcc
   - clang
   - deno
   - doxygen
@@ -122,15 +119,9 @@ arch_packages:
   - offlineimap
   - cron
   - pass
-  - ansible
   - jenkins
 
 # Desktop Packages
-  - libre-office
-  - mousepad
-  - zathura
-  - zathura-pdf-poppler
-  - poppler
   - pcmanfm
   - mpv
   - sxiv

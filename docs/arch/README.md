@@ -294,8 +294,8 @@ sudo pacman -S \
 3. Core Packages
 ```sh
 sudo pacman -S \
-            i3lock \
             i3-wm \
+            i3lock \
             i3status \
             picom \
             dunst \
@@ -414,6 +414,7 @@ paru -S \
     zoom \
     brave-bin \
     spotify \
+    i3-lock-color \
     pandoc-bin \
     shellcheck-bin \
     jitsi-meet-desktop-bin \
