@@ -24,6 +24,7 @@
       - "{{ home }}/Documents/projects/langs/cpp"
       - "{{ home }}/Documents/projects/langs/rust"
       - "{{ home }}/Documents/projects/langs/lua"
+      - "{{ home }}/Documents/projects/langs/python"
       - "{{ home }}/Documents/projects/personal"
       - "{{ home }}/Documents/projects/templates"
       - "{{ home }}/Documents/projects/tutorials"

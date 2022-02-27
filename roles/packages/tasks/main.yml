@@ -4,7 +4,7 @@
 - import_tasks: arch.yml
   when: ansible_os_family == "Archlinux"
 
-- name: debugger
-  ansible.builtin.debug:
-    msg: "OS: {{ ansible_os_family }}"
+# - name: debugger
+#   ansible.builtin.debug:
+#     msg: "OS: {{ ansible_os_family }}"
     

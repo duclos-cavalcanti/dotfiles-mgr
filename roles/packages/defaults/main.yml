@@ -20,7 +20,7 @@ arch_packages:
   - ansible
   - reflector
 
-# Hardware Packages
+## Hardware Packages
   - intel-media-driver
   - xf86-video-intel
   - intel-ucode
@@ -62,81 +62,95 @@ arch_packages:
   - xorg-xev
   - xorg-fonts-100dpi
   - xorg-fonts-75dpi
+  - xorg-xdpyinfo
   - xautolock
   - xclip
 
-# Core/Dev packages
-# - i3lock
+## Core packages
   - i3-wm
   - i3status
+  - xmonad
+  - xmonad-contrib
+  - xmobar
+  - stalonetray
+  - awesome
+  - vicious
   - picom
-  - dunst
   - unclutter
   - alacritty
   - vim
+  - neovim
+  - stow
+  - tmux
+  - nitrogen
+
+## Dev Packages
+  - man-pages
   - curl
+  - git
+  - docker
+# Python
   - python
   - python-pip
-  - tmux
   - ttf-dejavu
   - imagemagick
-  - man-pages
-  - nitrogen
-  - stow
-  - git
+# C/C++
+  - clang
   - cmake
   - ctags
-  - lcov
   - cppcheck
+  - lcov
   - gdb
-  - bat
-  - exa
-  - ripgrep
-  - fd
+  - valgrind
+# Haskell
+  - ghc
+  - haskell
+  - haskell-language-server
+  - cabal-install
+  - cabal-fmt
+  - stack
+  - nix 
+  - nix-docs
+# Rust
+  - rustup
+# Lua
+  - lua
+  - luarocks
+# Ruby
+  - ruby
+  - ruby-bundler
+# JS
+  - npm
+# Embedded
   - arm-none-eabi-binutils
   - arm-none-eabi-gcc
   - arm-none-eabi-gdb
   - arm-none-eabi-newlib
-  - clang
-  - deno
+  - picocom
+# Utils
+  - bat
+  - exa
+  - ripgrep
+  - fd
   - doxygen
-  - docker
-  - nodejs
-  - npm
-  - rustup
-  - java-runtime-common
-  - java-environment-common
-  - lua
-  - luarocks
-  - ruby
-  - ruby-bundler
   - graphviz
   - plantuml
-  - valgrind
-  - picocom
-  - neomutt
-  - notmuch
-  - offlineimap
-  - cron
-  - pass
-  - jenkins
 
-# Desktop Packages
-  - pcmanfm
+## Desktop Packages
   - mpv
   - sxiv
-  - gcolor3
-  - gimp
-  - galculator
   - maim
-  - arandr
   - ffmpeg
+  - pcmanfm
+  - gimp
+  - arandr
   - virtualbox
   - arc-gtk-theme
-  - gnome-themes-extra
+  - arc-icon-theme
   - kvantum-qt5
   - qt5ct
   - lxappearance
+  - archlinux-wallpaper
 
 # Printer Packages
   - cups
@@ -153,7 +167,6 @@ arch_services:
   - tlp
   - docker
   - bluetooth
-  - jenkins
   - cups
 
 debian_upgrade: yes
@@ -185,7 +198,7 @@ debian_services:
   - docker
   - jenkins
 
-# for debian-based systems
+# debian
 snap_packages:
   - alacritty
   - spotify
