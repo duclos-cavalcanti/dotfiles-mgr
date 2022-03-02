@@ -25,10 +25,8 @@
     use: paru
     state: present
     name:
-      - brave-bin
       - zoom
       - spotify
-      - i3-lock-color
 
 - name: Configure SystemD Packages
   ansible.builtin.systemd:

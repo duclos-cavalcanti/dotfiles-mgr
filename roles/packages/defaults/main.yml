@@ -67,12 +67,6 @@ arch_packages:
   - xclip
 
 ## Core packages
-  - i3-wm
-  - i3status
-  - xmonad
-  - xmonad-contrib
-  - xmobar
-  - stalonetray
   - awesome
   - vicious
   - picom
@@ -83,6 +77,7 @@ arch_packages:
   - stow
   - tmux
   - nitrogen
+  - firefox
 
 ## Dev Packages
   - man-pages
