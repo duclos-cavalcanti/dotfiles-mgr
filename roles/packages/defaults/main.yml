@@ -40,6 +40,7 @@ arch_packages:
   - bluez
   - bluez-utils
   - openssh
+  - cbatticon
   - inetutils
   - dnsutils
   - networkmanager-openvpn
