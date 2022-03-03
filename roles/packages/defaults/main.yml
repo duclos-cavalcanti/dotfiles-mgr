@@ -113,8 +113,8 @@ arch_packages:
   - lua
   - luarocks
 # Ruby
-  - ruby
-  - ruby-bundler
+# - ruby
+# - ruby-bundler
 # JS
   - npm
 # Embedded
@@ -167,11 +167,10 @@ arch_services:
 
 debian_upgrade: yes
 debian_packages:
-  - i3
-  - i3lock
-  - i3status
+  - awesome-wm
   - build-essential
   - vim
+  - neovim
   - git
   - tmux
   - stow
