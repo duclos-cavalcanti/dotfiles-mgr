@@ -18,6 +18,7 @@ ttf-fira-code
 ttf-fira-sans
 ttf-ibm-plex
 ttf-inconsolata
+ttf-iosevka-nerd
 # Printer Packages
 cups
 cups-pdf
