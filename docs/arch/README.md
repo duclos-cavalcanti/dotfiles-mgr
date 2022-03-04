@@ -63,12 +63,12 @@ cfdisk --zero /dev/sda
 Commands for formatting:
 ```sh
 # Non-Swap Partitions
-mkfs.ext4 /dev/sda1
-mkfs.ext4 /dev/sda3
-mkfs.ext4 /dev/sda4
+mkfs.ext4 /dev/sda1 # efi/EFI System
+mkfs.ext4 /dev/sda3 # Root/Linux Filesystem
+mkfs.ext4 /dev/sda4 # Home/Linux Filesystem
 
 # Swap Partitions
-mkswap /dev/sda2
+mkswap /dev/sda2    # Swap/Linux Swap
 ```
 
 Commands for mounting:
@@ -241,268 +241,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 <a name="configuration"/>
 
 ## 2. Configuration
+Partially automated through this [repo](https://github/duclos-cavalcanti/dotfiles-mgr) :)
 
-#### 2.1 System Packages
-1. Hardware related packages:
-```sh
-sudo pacman -S \
-            intel-media-driver \
-            xf86-video-intel \
-            intel-ucode \
-            mesa-demos \
-            mesa \
-            usbutils \
-            udiskie \
-            net-tools \
-            wireless_tools \
-            brightnessctl \
-            pulseaudio \
-            pavucontrol \
-            pasystray \
-            pamixer \
-            pulseaudio-bluetooth \
-            blueman \
-            bluez \
-            bluez-utils \
-            openssh \
-            inetutils \
-            dnsutils \
-            networkmanager-openvpn \
-            network-manager-applet \
-            openvpn \
-            tlp \
-            acpi \
-            ncdu
-```
-2. X11/Xorg related packages:
-```sh
-sudo pacman -S \
-            xorg-server \
-            xorg-xinit \
-            xorg-xrdb \
-            xorg-xrandr \
-            xorg-xmodmap \
-            xorg-setxkbmap
-            xorg-xwininfo \
-            xorg-xprop \
-            xorg-xev \
-            xorg-fonts-100dpi \
-            xorg-fonts-75dpi \
-            xautolock \
-            xclip
-```
-3. Core Packages
-```sh
-sudo pacman -S \
-            i3-wm \
-            i3lock \
-            i3status \
-            picom \
-            dunst \
-            unclutter \
-            parcellite \
-            alacritty \
-            vim \
-            nano \
-            tmux \
-            ttf-dejavu \
-            imagemagick \
-            man-pages \
-            nitrogen \
-            stow \
-            git \
-            cmake \
-            ctags \
-            gdb \
-            bat \
-            exa \
-            ripgrep \
-            fd \
-            arm-none-eabi-binutils \
-            arm-none-eabi-gcc \
-            arm-none-eabi-gdb \
-            arm-none-eabi-newlib \
-            ghdl-gcc \
-            clang \
-            python \
-            python-pip \
-            deno \
-            doxygen \
-            docker \
-            nodejs \
-            npm \
-            rust \
-            rustup \
-            java-runtime-common \
-            java-environment-common \
-            ruby \
-            ruby-bundler \
-            graphviz \
-            plantuml \
-            valgrind \
-            picocom \
-            neomutt \
-            notmuch \
-            offlineimap \
-            cron \
-            pass
-            
-```
-
-4. Desktop Packages
-```sh
-sudo pacman -S \
-            libre-office \
-            mousepad \
-            zathura \
-            zathura-pdf-poppler \
-            poppler \
-            pcmanfm \
-            mpv \
-            sxiv \
-            gcolor3 \
-            gimp \
-            galculator \
-            maim \
-            arandr \
-            ffmpeg \
-            virtualbox \
-            arc-gtk-theme \
-            gnome-themes-extra \
-            kvantum-qt5 \
-            qt5ct \
-            lxappearance
-```
-
-5. Printer Packages:
-```sh
-sudo pacman -S \
-            cups \
-            cups-pdf \
-            hplip \
-            system-config-printer \
-            sane \
-            xsane \
-            python-pyqt5
-```
-
-6. Work Packages:
-```sh
-sudo pacman -S \
-            tcpdump \
-            xilinx-vivado-dummy \
-            jitsi-meet-desktop-bin \
-            jenkins \
-            clang-format-static-bin \
-            cppcheck
-```
-#### 2.2 AUR Packages
-To be able to install packages from the AUR, one has to install a AUR-helper like `paru`.
-
-1. Install paru.
-```sh
-cd /opt
-sudo git clone https://aur.archlinux.org/paru.git
-sudo chown -R duclos:duclos ./paru
-cd paru
-makepkg -si
-```
-
-2. Install the necessary AUR packages.
-```sh
-paru -S \
-    zoom \
-    brave-bin \
-    spotify \
-    i3-lock-color \
-    pandoc-bin \
-    shellcheck-bin \
-    jitsi-meet-desktop-bin \
-    teams \
-    lcov \
-    can-utils
-```
-
-#### 2.3 Python Packages
-
-```sh
-pip install compiledb pillow
-pip install 'python-language-server[all]'
-```
-
-#### 2.4 Enable Newly Installed Services
-```sh
-sudo systemctl enable tlp
-sudo systemctl enable docker
-sudo systemctl enable bluetooth
-sudo systemctl enable jenkins
-# available at http://localhost:8090
-```
-
-#### 2.5 System File structure
-
-```sh
-cd ~
-mkdir -p Desktop
-mkdir -p Documents
-mkdir -p Downloads
-mkdir -p Music
-mkdir -p Pictures
-mkdir -p Programs
-mkdir -p Videos
-
-mkdir -p .config
-mkdir -p .bin
-
-cd ~/Documents
-git clone https://github.com/duclos-cavalcanti/dotfiles.git
-./scripts/.scripts/setup_env.sh
-
-mkdir -p uni
-mkdir -p work
-
-mkdir -p projects
-projects/
-├── ai
-│   ├── Coral-USB-Accelerator
-│   └── Coral-USB-Accelerator.wiki
-├── dsa
-│   ├── starters_edx
-│   ├── tree_height
-│   └── UCSD-data-structures
-├── embedded
-│   ├── FreeRTOS-Emulator
-│   ├── FreeRTOS-SpaceInvaders
-│   ├── TI-SensorTag-IoT-Contiki
-│   ├── TM4C123GXL-Cmake
-│   └── XMC4500-Cmake
-├── high-performance
-│   ├── BarnsleyFern-Multithreaded
-│   └── DynamicProgrammingOpenMPI
-├── hw
-│   ├── mips
-│   ├── vhdl-entwurf
-│   └── vhdl-praktikum
-├── personal
-│   └── duclos-cavalcanti.github.io
-├── templates
-│   ├── C-code-snippets
-│   ├── CMake-Cpp-Template
-│   ├── CMake-C-Template
-│   ├── Docker-Template
-│   ├── ex
-│   ├── GoogleTestTemplate-Bazel
-│   ├── GoogleTestTemplate-CMake
-│   ├── Jenkins-CMake-Template
-│   ├── Jenkins-Pipeline-Template
-│   ├── TravisCI-Template
-│   └── Vivado-Template
-└── tutorials
-    ├── Tcl-Tutorial
-    └── TutorialPlantUML
-
-```
-#### 2.6 GPG / Pass
+#### 2.1 GPG / Pass (optional)
 1. Generate GPG Key
 ```sh
 gpg --full-gen-key
@@ -514,7 +255,7 @@ pass init <gpg email>
 pass add <keyword for a service>
 pass <keyword> # spits password
 ```
-#### 2.7 Printer/Scanner Configuration
+#### 2.2 Printer/Scanner Configuration (optional)
 **Printer**
 
 0. Check if these packages are installed.
@@ -550,7 +291,7 @@ pillow  # Python packages, also wasn't needed
 1. `sudo systemctl enable ipp-usb`
 2. `sudo systemctl start ipp-usb`
 
-#### 2.6 Snap
+#### 2.3 Snap (optional)
 1. Install Snap
 ```sh
 git clone https://aur.archlinux.org/snapd.git
@@ -572,59 +313,7 @@ sudo ln -s /var/lib/snapd/snap /snap
 sudo snap install travis
 ```
 
-#### 2.7 Vim
-1. Install Plugins
-```sh
-vim .
-:PlugInstall<CR>
-```
-
-2. Install Plugin Dependencies
-    1. LSP/Language Server Client:
-    - [lsp.vim](https://github.com/prabirshrestha/vim-lsp)
-    - [asyncomplete.vim](https://github.com/prabirshrestha/asyncomplete.vim)
-    - [asyncomplete-lsp.vim](https://github.com/prabirshrestha/asyncomplete-lsp.vim)
-    
-    For other language installations go to [this link](https://github.com/prabirshrestha/vim-lsp/wiki/Servers).
-    
-    ```sh
-    #################################
-    # SHOULDVE BEEN INSTALLED ALREADY
-    #################################
-    
-    # depends on clangd for C/C++
-    sudo pacman -S clang
-    
-    # depends on pyls for Python
-    pip install python-language-server
-    
-    # depends on ghdl for VHDL
-    sudo pacman -S ghdl-gcc
-    pip install pyGHDL
-    
-    # many languages may depend on npm
-    sudo pacman -S nodejs npm
-    ```
-    2. Tagbar
-    ```sh
-    #################################
-    # SHOULDVE BEEN INSTALLED ALREADY
-    #################################
-    
-    sudo pacman -S ctags
-    ```
-    
-    3. Ultisnips
-    ```sh
-    TODO
-    ```
-    
-    4. Vimspector
-    ```sh
-    TODO
-    ```
-
-#### 2.8 Jenkins
+#### 2.4 Jenkins (optional)
 1. If needed, add Jenkins as a sudo user
 ```sh
 sudo visudo

@@ -1,0 +1,15 @@
+xorg-server
+xorg-xinit
+xorg-xrdb
+xorg-xrandr
+xorg-xmodmap
+xorg-setxkbmap
+xorg-xwininfo
+xorg-xprop
+xorg-xset
+xorg-xev
+xorg-fonts-100dpi
+xorg-fonts-75dpi
+xorg-xdpyinfo
+xautolock
+xclip

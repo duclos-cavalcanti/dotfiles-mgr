@@ -1,0 +1,23 @@
+# Desktop Packages
+mpv
+sxiv
+maim
+ffmpeg
+pcmanfm
+gimp
+arandr
+virtualbox
+arc-gtk-theme
+arc-icon-theme
+kvantum-qt5
+qt5ct
+lxappearance
+archlinux-wallpaper
+# Printer Packages
+cups
+cups-pdf
+hplip
+system-config-printer
+sane
+xsane
+python-pyqt5

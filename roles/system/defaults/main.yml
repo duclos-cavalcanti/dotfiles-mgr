@@ -1,6 +1,0 @@
-github: "git@github.com:duclos-cavalcanti"
-projects: "~/Documents/projects"
-github_projects:
-  - {repo: "{{ github }}/duclos-cavalcanti.git", dest: "{{ projects }}/personal", name: "duclos-cavalcanti"}
-  - {repo: "{{ github }}/duclos-cavalcanti.github.io.git", dest: "{{ projects }}/personal", name: "duclos-cavalcanti.github.io"}
-  - {repo: "{{ github }}/curriculum-vitae.git", dest: "{{ projects }}/personal", name: "curriculum-vitae"}

@@ -1,0 +1,51 @@
+man
+man-pages
+curl
+git
+docker
+# Python
+python
+python-pip
+ttf-dejavu
+imagemagick
+# C/C++
+clang
+cmake
+ctags
+cppcheck
+lcov
+gdb
+valgrind
+# Haskell
+ghc
+haskell
+haskell-language-server
+cabal-install
+cabal-fmt
+stack
+nix 
+nix-docs
+# Rust
+rustup
+# Lua
+lua
+luarocks
+# Ruby
+ruby
+ruby-bundler
+# JS
+npm
+# Embedded
+arm-none-eabi-binutils
+arm-none-eabi-gcc
+arm-none-eabi-gdb
+arm-none-eabi-newlib
+picocom
+# Utils
+bat
+exa
+ripgrep
+fd
+doxygen
+graphviz
+plantuml

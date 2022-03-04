@@ -1,0 +1,11 @@
+awesome
+vicious
+picom
+unclutter
+alacritty
+vim
+neovim
+stow
+tmux
+nitrogen
+firefox

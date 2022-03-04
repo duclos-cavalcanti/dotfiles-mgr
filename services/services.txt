@@ -1,0 +1,6 @@
+NetworkManager
+systemd-timesyncd
+tlp
+docker
+bluetooth
+cups
