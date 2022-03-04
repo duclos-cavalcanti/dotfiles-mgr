@@ -27,6 +27,7 @@ local FILESYSTEM=(
 "${HOME}/Documents/projects/embedded"
 "${HOME}/Documents/projects/hw"
 "${HOME}/Documents/projects/langs"
+"${HOME}/Documents/projects/langs/c"
 "${HOME}/Documents/projects/langs/cpp"
 "${HOME}/Documents/projects/langs/lisp"
 "${HOME}/Documents/projects/langs/haskell"
