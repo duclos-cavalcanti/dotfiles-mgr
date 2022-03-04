@@ -12,6 +12,9 @@ Regular calamares installation.
 <a name="configuration"/>
 
 ## 2. Configuration
+```
+TODO: automate ubunut debian installation with script
+```
 
 #### 2.1 Upgrade package base
 ```sh
@@ -49,36 +52,6 @@ cd ~/Documents
 git clone https://github.com/duclos-cavalcanti/dotfiles.git
 
 # Stow the dotfiles
-```
-#### 2.5 Vim
-1. Install Plugins
-```sh
-vim .
-:PlugInstall<CR>
-```
-
-2. LSP/Language Server Client: ddc.vim
-[lsp.vim](https://github.com/prabirshrestha/vim-lsp)
-[asyncomplete.vim](https://github.com/prabirshrestha/asyncomplete.vim)
-
-For other language installations go to [this link](Link).
-
-```sh
-# depends on clangd for C/C++
-sudo pacman -S clang
-
-# depends on pyls for Python
-pip install python-language-server
-
-# many languages may depend on npm
-# sudo pacman -S nodejs npm
-```
-3.
-```sh
-```
-
-4.
-```sh
 ```
 #### 2.6 Reboot
 1. Reboot
