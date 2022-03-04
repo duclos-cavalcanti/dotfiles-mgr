@@ -9,3 +9,4 @@ stow
 tmux
 nitrogen
 firefox
+ttf-dejavu

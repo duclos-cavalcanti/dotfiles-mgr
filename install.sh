@@ -49,9 +49,11 @@ GITHUB="git@github.com:duclos-cavalcanti"
 # set -e
 
 echo -ne "
---------------------------------------------------------------------------
-                    Automated Arch Linux Installer
---------------------------------------------------------------------------
+ _______________________________ 
+|  ___________________________  |
+| | Austomated Arch Installer | |
+| |___________________________| |
+|_______________________________|
 "
 echo "Checking Dependencies..."
 if ! [ -f $SSHKEY ]; then
@@ -262,3 +264,11 @@ else
     echo "Can't pull down git project with no SSH credentials!"
     exit -1
 fi
+
+echo -ne "
+ _______________________ 
+|  ___________________  |
+| | Installation Done | |
+| |___________________| |
+|_______________________|
+"
