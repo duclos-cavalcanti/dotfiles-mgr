@@ -18,7 +18,6 @@ gdb
 valgrind
 # Haskell
 ghc
-haskell
 haskell-language-server
 cabal-install
 cabal-fmt

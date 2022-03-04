@@ -7,7 +7,9 @@ CORE_PACKAGES="packages/core.txt"
 DEV_PACKAGES="packages/dev.txt"
 DESKTOP_PACKAGES="packages/desktop.txt"
 
-local FILESYSTEM = (
+SERVICES="services/services.txt"
+
+local FILESYSTEM=(
 "${HOME}/Desktop"
 "${HOME}/Documents"
 "${HOME}/Downloads"
@@ -39,14 +41,28 @@ SSHKEY="${HOME}/.ssh/id_ed25519.pub"
 PROJECTS="${HOME}/Documents/projects"
 GITHUB="git@github.com:duclos-cavalcanti"
 
-set -e
+# debugging
+# set -e
 
 echo -ne "
 --------------------------------------------------------------------------
                     Automated Arch Linux Installer
 --------------------------------------------------------------------------
 "
+echo "Checking Dependencies..."
+if ! [ -f $SSHKEY ]; then
+    echo "ssh key is needed to pull down git projects!"
+    exit -1
+fi
 
+for file in $BASE_PACKAGES $HARDWARE_PACKAGES $XORG_PACKAGES $CORE_PACKAGES $DEV_PACKAGES $DESKTOP_PACKAGES; do 
+    if ! [ -f $file ]; then
+        echo "package file $f doesn't exist!"
+        exit -1
+    fi
+done
+
+echo "All Good!"
 echo -ne "
 --------------------------------------------------------------------------
                     1. Installing Packages
@@ -57,8 +73,8 @@ function install_package_list() {
     # package list
     cat $1 | \
     while read pkg ; do
-        if [[ $pkg ~= ^# ]]; then
-            # is a comment
+        if [[ $pkg =~ '^#' ]]; then
+            continue
         else
             echo "Installing $pkg ..."
             sudo pacman -S --noconfirm --needed $pkg
@@ -107,15 +123,34 @@ echo "Installing Rust Packages..."
 rustup update stable
 rustup component add rls rust-analysis rust-src
 
+rustup toolchain install nightly
+rustup component add rls rust-analysis rust-src --toolchain nightly
+rustup override set nightly
+
+if [ -d ~/.local/bin ]; then
+    pushd ~/.local/bin
+        curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
+        chmod +x rust-analyzer
+    popd
+else
+    echo "Need .local/bin to install rust-analyzer"
+fi
+
+echo "Installing Go Packages..."
+go install golang.org/x/tools/gopls@latest
+
+echo "Installing Npm Packages..."
+sudo npm i -g bash-language-server
+
 echo -ne "
 --------------------------------------------------------------------------
                     2. AUR
 --------------------------------------------------------------------------
 "
-local owner=$(stat -c "%U" /opt)
+owner=$(stat -c "%U" /opt)
 if [[ "$owner" != "$(whoami)" ]]; then
     echo "Owning /opt directory..."
-    local user=$(whoami)
+    user=$(whoami)
     sudo chown -R ${user}:${user} /opt
 fi
 
@@ -125,9 +160,8 @@ pushd /opt
         pushd paru 
             makepkg -si
         popd
-        
-        paru -S zoom spotify
     fi
+    # paru -S zoom spotify
 popd
 
 echo -ne "
@@ -135,13 +169,19 @@ echo -ne "
                     3. Starting Services
 --------------------------------------------------------------------------
 "
-cat $1 | \
-while read service ; do
-    if [[ $service ~= ^# ]]; then
-        # is a comment
+cat $SERVICES | \
+while read service; do
+    if [[ $service =~ '^#' ]]; then
+        continue
     else
         echo "Setting $service ..."
-        sudo systemctl enable $service
+        status=$(systemctl is-active $service)
+        if [ "$status" = "active" ]; then 
+            continue
+        else
+            echo "$service"
+            sudo systemctl enable $service
+        fi
     fi
 done
 
@@ -151,14 +191,18 @@ echo -ne "
 --------------------------------------------------------------------------
 "
 for p in ${FILESYSTEM[@]}; do 
-    mkdir -pv $p
+    if ! [ -d $p ]; then
+        mkdir -pv $p
+    else 
+        echo "$p already exists!"
+    fi
 done
 
 
 if [ -f $SSHKEY ]; then
     pushd ${PROJECTS}
         pushd personal
-            local personal_repos=(duclos-cavalcanti duclos-cavalcanti.github.io curriculum-vitae)
+            personal_repos=(duclos-cavalcanti duclos-cavalcanti.github.io curriculum-vitae)
             for repo in ${personal_repos[@]}; do
                 if ! [ -d $repo ]; then
                     git clone "${GITHUB}/${repo}.git"
@@ -192,6 +236,8 @@ if [ -f $SSHKEY ]; then
                 echo "Dotfiles pull down hasnt worked!"
                 exit -1
             fi
+        else
+            echo "dotfiles aleady installed!"
         fi
     popd
 else
