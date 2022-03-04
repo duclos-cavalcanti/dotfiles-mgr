@@ -13,6 +13,11 @@ kvantum-qt5
 qt5ct
 lxappearance
 archlinux-wallpaper
+ttf-dejavu
+ttf-fira-code
+ttf-fira-sans
+ttf-ibm-plex
+ttf-inconsolata
 # Printer Packages
 cups
 cups-pdf
