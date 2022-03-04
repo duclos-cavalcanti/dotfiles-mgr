@@ -12,4 +12,5 @@ xorg-fonts-100dpi
 xorg-fonts-75dpi
 xorg-xdpyinfo
 xautolock
+xtrlock
 xclip
