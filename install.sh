@@ -113,7 +113,21 @@ install_package_list $CORE_PACKAGES
 
 echo -ne "
 *****************************
-1.5 Language-related
+1.5 Dev
+*****************************
+"
+install_package_list $DEV_PACKAGES
+
+echo -ne "
+*****************************
+1.6 Desktop
+*****************************
+"
+install_package_list $DESKTOP_PACKAGES
+
+echo -ne "
+*****************************
+1.7 Language-related
 *****************************
 "
 echo "Installing Python Packages..."
