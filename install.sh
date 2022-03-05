@@ -146,6 +146,7 @@ rustup component add rls rust-analysis rust-src
 rustup toolchain install nightly
 rustup component add rls rust-analysis rust-src --toolchain nightly
 rustup override set nightly
+# carto install spotify-tui
 
 if [ -d ~/.local/bin ]; then
     pushd ~/.local/bin
