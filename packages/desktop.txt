@@ -13,6 +13,7 @@ kvantum-qt5
 qt5ct
 lxappearance
 archlinux-wallpaper
+screenfetch
 ttf-dejavu
 ttf-fira-code
 ttf-fira-sans
