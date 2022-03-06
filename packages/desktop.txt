@@ -19,6 +19,7 @@ ttf-fira-sans
 ttf-ibm-plex
 ttf-inconsolata
 ttf-iosevka-nerd
+dina-font
 # Printer Packages
 cups
 cups-pdf
