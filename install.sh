@@ -138,6 +138,7 @@ echo -ne "
 "
 echo "Installing Python Packages..."
 pip install compiledb pyright ipython ipdb
+pip3 install --user wpgtk
 
 echo "Installing Rust Packages..."
 rustup update stable
