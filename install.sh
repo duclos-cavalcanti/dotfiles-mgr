@@ -13,7 +13,7 @@ DESKTOP_PACKAGES="packages/desktop.txt"
 
 SERVICES="services/services.txt"
 
-local FILESYSTEM=(
+FILESYSTEM=(
 "${HOME}/Desktop"
 "${HOME}/Documents"
 "${HOME}/Downloads"
