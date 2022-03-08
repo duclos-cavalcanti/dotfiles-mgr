@@ -276,7 +276,7 @@ function farewell() {
 }
 
 function main() {
-    greeting # says hi and checks for dependencies for this script
+    greeting # says hi, als checks for dependencies
     install_packages
     install_aur
     start_services
