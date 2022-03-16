@@ -28,6 +28,7 @@ rustup
 # Lua
 lua
 luarocks
+lua-language-server
 # Ruby
 ruby
 ruby-bundler

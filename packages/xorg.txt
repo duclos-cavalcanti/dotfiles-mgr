@@ -14,3 +14,4 @@ xorg-xdpyinfo
 xautolock
 xtrlock
 xclip
+xdotool
