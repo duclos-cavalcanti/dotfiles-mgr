@@ -11,6 +11,7 @@ xorg-xev
 xorg-fonts-100dpi
 xorg-fonts-75dpi
 xorg-xdpyinfo
+xorg-xbacklight
 xautolock
 xtrlock
 xclip
