@@ -21,8 +21,10 @@ haskell-language-server
 cabal-install
 cabal-fmt
 stack
-nix 
+nix
 nix-docs
+# Go
+go
 # Rust
 rustup
 # Lua
