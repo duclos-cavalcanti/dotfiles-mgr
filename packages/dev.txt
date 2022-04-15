@@ -25,6 +25,7 @@ nix
 nix-docs
 # Go
 go
+delve
 # Rust
 rustup
 # Lua
