@@ -1,6 +1,7 @@
 man
 man-pages
 curl
+wget
 git
 docker
 # Python
