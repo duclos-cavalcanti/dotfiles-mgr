@@ -49,7 +49,7 @@ FILESYSTEM=(
 
 function greeting() {
     echo -ne "
-     _______________________________ 
+     _______________________________
     |  ___________________________  |
     | |  Automated Arch Installer | |
     | |___________________________| |
@@ -63,14 +63,14 @@ function greeting() {
         echo "ssh key is needed to pull down git repos!"
         exit -1
     fi
-    
-    for file in $BASE_PACKAGES $HARDWARE_PACKAGES $XORG_PACKAGES $CORE_PACKAGES $DEV_PACKAGES $DESKTOP_PACKAGES; do 
+
+    for file in $BASE_PACKAGES $HARDWARE_PACKAGES $XORG_PACKAGES $CORE_PACKAGES $DEV_PACKAGES $DESKTOP_PACKAGES; do
         if ! [ -f $file ]; then
             echo "package file $f doesn't exist!"
             exit -1
         fi
     done
-    
+
     echo "All Good!"
 }
 
@@ -137,17 +137,17 @@ function install_packages() {
     if command -v pip; then
         pip install compiledb pyright ipython ipdb
         pip install --user wpgtk
-    else 
+    else
         echo "Pip isn't installed? Skipping Python..."
     fi
-    
+
     echo "Installing Rust Packages..."
 
     if command -v rustup; then
         echo "Installing Rust Packages..."
         rustup update stable
         rustup component add rls rust-analysis rust-src
-        
+
         rustup toolchain install nightly
         rustup component add rls rust-analysis rust-src --toolchain nightly
         rustup override set nightly
@@ -160,18 +160,18 @@ function install_packages() {
         else
             echo "Need .local/bin to install rust-analyzer..."
         fi
-    else 
+    else
         echo "Rustup isn't installed? Skipping Rust..."
     fi
 
-    if command -v go; then 
+    if command -v go; then
         echo "Installing Go Packages..."
         go install golang.org/x/tools/gopls@latest
-    else 
+    else
         echo "Go isn't installed? Skipping Go..."
     fi
 
-    if command -v npm; then 
+    if command -v npm; then
         echo "Installing Npm Packages..."
         sudo npm i -g bash-language-server
     fi
@@ -186,11 +186,11 @@ function install_aur() {
         user=$(whoami)
         sudo chown -R ${user}:${user} /opt
     fi
-    
+
     pushd /opt
         if ! command -v paru; then
             git clone https://aur.archlinux.org/paru.git
-            pushd paru 
+            pushd paru
                 makepkg -si
             popd
         fi
@@ -206,7 +206,7 @@ function start_services() {
             continue
         else
             status=$(systemctl is-active $service)
-            if [ "$status" = "active" ]; then 
+            if [ "$status" = "active" ]; then
                 echo "No need to set service $service ..."
                 continue
             else
@@ -220,12 +220,12 @@ function start_services() {
 
 function create_filesystem() {
     step 4 "Filesystem"
-    for p in ${FILESYSTEM[@]}; do 
+    for p in ${FILESYSTEM[@]}; do
         if ! [ -d $p ]; then
             echo "Creating $p!"
             mkdir -p $p
             sleep 0.5
-        else 
+        else
             echo "$p already exists!"
         fi
     done
@@ -248,7 +248,7 @@ function install_dotfiles() {
         if ! [ -d .dotfiles ]; then
             git clone "${GITHUB}/dotfiles.git" .dotfiles
             if [ $? -eq 0 ]; then
-                pushd .dotfiles 
+                pushd .dotfiles
                     ./install.sh pc install
                 popd
                 if command -v nvim; then
@@ -265,9 +265,25 @@ function install_dotfiles() {
     popd
 }
 
+function install_extra() {
+    step 6 "Extra"
+    pushd ${HOME}
+        if ! [ -f .config/.synonymrc ]; then
+            git clone https://github.com/smallwat3r/synonym.git
+            pushd synonym
+                sudo make install
+            popd
+            echo -e "SYNONYM_THESAURUS_KEY=h8CieWLRoEJimo6KcS4Q\nSYNONYM_SEARCH_LANG=en" \
+            > ~/.config/.synonymrc
+        else
+            echo "synonymrc aleady installed!"
+        fi
+    popd
+}
+
 function farewell() {
     echo -ne "
-     _______________________ 
+     _______________________
     |  ___________________  |
     | | Installation Done | |
     | |___________________| |
@@ -281,7 +297,8 @@ function main() {
     install_aur
     start_services
     create_filesystem
-    install_dotfiles 
+    install_dotfiles
+    install_extra
     farewell # bye
 }
 
