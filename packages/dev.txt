@@ -46,6 +46,7 @@ arm-none-eabi-newlib
 picocom
 # Utils
 bat
+jq
 exa
 ripgrep
 fd
